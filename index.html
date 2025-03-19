@@ -1,76 +1,18 @@
 <!DOCTYPE html>
-<html lang="tr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>İnteraktif Garaj Haritası</title>
+<html>
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
     <style>
-        body {
-            text-align: center;
+
+        model-viewer {
+            width: 800px;
+            height: 400px;
         }
-        .map-container {
-            position: relative;
-            display: inline-block;
-        }
-        .map-container img {
-            max-width: 100%;
-            height: auto;
-        }
-        .block {
-            position: absolute;
-            background: rgba(255, 0, 0, 0.5);
-            border: 1px solid red;
-            cursor: pointer;
-        }
-        .tooltip {
-            position: absolute;
-            background: white;
-            padding: 5px;
-            border: 1px solid black;
-            display: none;
-            z-index: 10;
-        }
-    </style>
-</head>
-<body>
-
-    <div class="map-container">
-        <img src="plan.jpg" alt="Bölge Planı">
-
-        <!-- F Sektörü için bloklar -->
-        <div class="block" style="top: 580px; left: 250px; width: 20px; height: 30px;" data-info="Garaj 1, Sektör F - Oto Tamir, Telefon: +90 555 123 45 67"></div>
-        <div class="block" style="top: 580px; left: 270px; width: 20px; height: 30px;" data-info="Garaj 2, Sektör F - Kaporta Ustası, Telefon: +90 555 234 56 78"></div>
-        <div class="block" style="top: 580px; left: 290px; width: 20px; height: 30px;" data-info="Garaj 3, Sektör F - Boya Atölyesi, Telefon: +90 555 345 67 89"></div>
-        <div class="block" style="top: 580px; left: 310px; width: 20px; height: 30px;" data-info="Garaj 4, Sektör F - Elektrikçi, Telefon: +90 555 456 78 90"></div>
-        <div class="block" style="top: 580px; left: 330px; width: 20px; height: 30px;" data-info="Garaj 5, Sektör F - Yedek Parça, Telefon: +90 555 567 89 01"></div>
-        
-        <div class="tooltip" id="tooltip"></div>
-    </div>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const blocks = document.querySelectorAll(".block");
-            const tooltip = document.getElementById("tooltip");
-
-            blocks.forEach(block => {
-                block.addEventListener("mouseenter", function (event) {
-                    tooltip.style.display = "block";
-                    tooltip.innerHTML = block.getAttribute("data-info");
-                    tooltip.style.left = event.pageX + "px";
-                    tooltip.style.top = event.pageY + "px";
-                });
-
-                block.addEventListener("mousemove", function (event) {
-                    tooltip.style.left = event.pageX + "px";
-                    tooltip.style.top = event.pageY + "px";
-                });
-
-                block.addEventListener("mouseleave", function () {
-                    tooltip.style.display = "none";
-                });
-            });
-        });
-    </script>
-
-</body>
+        </style>
+    <body style="margin: 0px; overflow: hidden;">
+        <model-viewer
+            src="/public/models/panda.glb"
+            ar
+            >
+        </model-viewer>
+    </body>
 </html>
